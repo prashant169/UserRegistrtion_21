@@ -36,4 +36,16 @@ public class UserRegistrationTest {
 		boolean result = userRegistration.emailAddress("abc()*@gmail.com");
 		Assert.assertEquals(false, result);
 	}
-}
+	 @Test
+	    public void givenPhoneNumber_WhenInFormat_ShouldReturnTrue() {
+	        boolean result = userRegistration.phoneNumber("91 9970899057");
+	        Assert.assertEquals(true, result);
+	    }
+
+	    @Test
+	    public void givenPhoneNumber_WhenOurOfFormat_ShouldReturnFlase() {
+	        boolean result = userRegistration.phoneNumber("+91 9970899057");
+	        Assert.assertEquals(false, result);
+	    }
+
+	}
