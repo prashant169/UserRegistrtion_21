@@ -27,7 +27,7 @@ public class UserRegistrationTest {
 
 	@Test
 	public void givenLastName_WhenOurOfFormat_ShouldReturnFalse() {
-		boolean result = userRegistration.lastName("phad");
+		boolean result = userRegistration.lastName("prashant");
 		Assert.assertEquals(false, result);
 
 	}
@@ -46,7 +46,7 @@ public class UserRegistrationTest {
 
 	@Test
 	public void givenPhoneNumber_WhenInFormat_ShouldReturnTrue() {
-		boolean result = userRegistration.phoneNumber("91 9970899057");
+		boolean result = userRegistration.phoneNumber("91 9970799057");
 		Assert.assertEquals(true, result);
 	}
 
@@ -58,7 +58,7 @@ public class UserRegistrationTest {
 
 	@Test
 	public void givenPassword_WhenInFormat_ShouldReturnTrue() {
-		boolean result = userRegistration.passwordRule1("abcdegfhij");
+		boolean result = userRegistration.passwordRule1("abcdegss");
 		Assert.assertEquals(true, result);
 	}
 
@@ -70,19 +70,19 @@ public class UserRegistrationTest {
 
 	@Test
 	public void givenPasswordRule2_WhenInFormat_ShouldReturnTrue() {
-		boolean result = userRegistration.passwordRule2("Abcdefghij");
+		boolean result = userRegistration.passwordRule2("Abcdefgss");
 		Assert.assertEquals(true, result);
 	}
 
 	@Test
 	public void givenPasswordRule2_WhenOurOfFormat_ShouldReturnFalse() {
-		boolean result = userRegistration.passwordRule2("abcdefghij");
+		boolean result = userRegistration.passwordRule2("abcdefgss");
 		Assert.assertEquals(false, result);
 	}
 
 	@Test
 	public void givenPasswordRule3_WhenInFormat_ShouldReturnTrue() {
-		boolean result = userRegistration.passwordRule3("Prashant22");
+		boolean result = userRegistration.passwordRule3("Prashant98");
 		Assert.assertEquals(true, result);
 	}
 
@@ -94,49 +94,13 @@ public class UserRegistrationTest {
 
 	@Test
 	public void givenPasswordRule4_WhenInFormat_ShouldReturnTrue() {
-		boolean result = userRegistration.passwordRule4("Prashant@22");
+		boolean result = userRegistration.passwordRule4("Prashant@98");
 		Assert.assertEquals(true, result);
 	}
 
 	@Test
 	public void givenPasswordRule4_WhenOurOfFormat_ShouldReturnFalse() {
 		boolean result = userRegistration.passwordRule4("Prashant");
-		Assert.assertEquals(false, result);
-	}
-
-	@Test
-	public void givenEmail1_WhenInFormat_ShouldReturnTrue() {
-		boolean result = userRegistration.emailAddressSample("abc1@yahoo.com");
-		Assert.assertEquals(true, result);
-	}
-
-	@Test
-	public void givenEmail_1WhenOurOfFormat_ShouldReturnFalse() {
-		boolean result = userRegistration.emailAddressSample("abc@yahoo.com");
-		Assert.assertEquals(false, result);
-	}
-
-	@Test
-	public void givenEmail_2WhenInFormat_ShouldReturnTrue() {
-		boolean result = userRegistration.emailAddressSample("abc-100@yahoo.com");
-		Assert.assertEquals(true, result);
-	}
-
-	@Test
-	public void givenEmail2_WhenOurOfFormat_ShouldReturnFalse() {
-		boolean result = userRegistration.emailAddressSample("abc123@.com");
-		Assert.assertEquals(false, result);
-	}
-
-	@Test
-	public void givenEmail3_WhenInFormat_ShouldReturnTrue() {
-		boolean result = userRegistration.emailAddressSample("abc.100@abc.com.au");
-		Assert.assertEquals(true, result);
-	}
-
-	@Test
-	public void givenEmail3_WhenOurOfFormat_ShouldReturnFalse() {
-		boolean result = userRegistration.emailAddressSample("abc()*@gmail.com");
 		Assert.assertEquals(false, result);
 	}
 
@@ -152,4 +116,45 @@ public class UserRegistrationTest {
 		Assert.assertEquals(false, result);
 	}
 
+	@Test
+	public void givenMessage_WhenHappy_ShouldReturnEntrySuccessful() {
+		String result = null;
+		try {
+			result = MoodAnalyzer.analyseMood("I am in Happy mood");
+		} catch (MoodAnalyzerException e) {
+			e.printStackTrace();
+		}
+		Assert.assertEquals("Entry Successful", result);
+	}
+
+	@Test
+	public void givenEmail2_WhenNotProper_ShouldReturnEntryFailed() {
+		String result = null;
+		try {
+			result = MoodAnalyzer.analyseMood("I am in Sad mood");
+		} catch (MoodAnalyzerException e) {
+			e.printStackTrace();
+		}
+		Assert.assertEquals("Entry Failed", result);
+	}
+
+	@Test
+	public void givenMessage_NULL_ShouldReturnMoodAnalyserException() throws MoodAnalyzerException {
+		MoodAnalyzer moodAnalyser = new MoodAnalyzer();
+		try {
+			MoodAnalyzer.analyseMood(null);
+		} catch (MoodAnalyzerException e) {
+			Assert.assertEquals(MoodAnalyzerException.type.NULL, e.type);
+		}
+	}
+
+	@Test
+	public void givenMessage_EMPTY_ShouldReturnMoodAnalyzerException() throws MoodAnalyzerException {
+		MoodAnalyzer moodAnalyser = new MoodAnalyzer();
+		try {
+			MoodAnalyzer.analyseMood("");
+		} catch (MoodAnalyzerException e) {
+			Assert.assertEquals(MoodAnalyzerException.type.EMPTY, e.type);
+		}
+	}
 }

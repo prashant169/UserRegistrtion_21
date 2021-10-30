@@ -33,7 +33,7 @@ public class UserRegistration {
 	}
 
 	public boolean passwordRule1(String password) {
-		String regex = "^[0-9a-zA-Z]{8,}$";
+		String regex = "^[a-z0-9A-Z]{8,}$";
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(password);
 		return matcher.matches();
@@ -67,5 +67,14 @@ public class UserRegistration {
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(emailId);
 		return matcher.matches();
+	}
+
+	public boolean email(Object object) {
+		return false ;
+	}
+
+	public boolean emailIdValidator(String string) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
